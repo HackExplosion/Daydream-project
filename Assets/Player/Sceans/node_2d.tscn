@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3ns8cjtfnsxl"]
+
+[ext_resource type="Script" uid="uid://cikj3hnhewuhc" path="res://Assets/Player/Script/player_controler.gd" id="1_7rrt0"]
+[ext_resource type="Texture2D" uid="uid://bufkg7s4gjoxi" path="res://Assets/Player/Sprites/Player_hollow_knight.png" id="2_lu5sn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rrt0"]
+
+[sub_resource type="Animation" id="Animation_q55nm"]
+resource_name = "Move"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_oyqbi"]
+resource_name = "Jump"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15]
+}
+
+[sub_resource type="Animation" id="Animation_74dsy"]
+resource_name = "Fuck"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_302es"]
+resource_name = "idli"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_73pp0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7pjhg"]
+_data = {
+&"Fuck": SubResource("Animation_74dsy"),
+&"Jump": SubResource("Animation_oyqbi"),
+&"Move": SubResource("Animation_q55nm"),
+&"RESET": SubResource("Animation_73pp0"),
+&"idli": SubResource("Animation_302es")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_7rrt0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("2_lu5sn")
+hframes = 8
+vframes = 7
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7rrt0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7pjhg")
+}

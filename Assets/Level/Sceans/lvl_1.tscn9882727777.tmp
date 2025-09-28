@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqe5wkwrgogrf"]
+
+[ext_resource type="PackedScene" uid="uid://dr7g73uauaiha" path="res://Assets/Player/Sceans/player.tscn" id="1_l4430"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4430"]
+size = Vector2(576, 121)
+
+[node name="lvl1" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("1_l4430")]
+
+[node name="temp_floor" type="StaticBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="temp_floor"]
+offset_left = -290.0
+offset_top = 41.0
+offset_right = 287.0
+offset_bottom = 162.0
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_floor"]
+position = Vector2(-2, 100.5)
+shape = SubResource("RectangleShape2D_l4430")
